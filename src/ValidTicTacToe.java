@@ -1,5 +1,6 @@
 public class ValidTicTacToe {
 
+    //check the all true sides of the given grid
     static boolean checkValidity(String []grid, char ch){
         if(grid[0].charAt(0)==ch && grid[0].charAt(1)==ch && grid[0].charAt(2)==ch){
             return true;
@@ -30,6 +31,8 @@ public class ValidTicTacToe {
         return false;
     }
     public static boolean validTicTacToe(String [] board){
+
+        // count the number of X and O in the grid
         int co =0;
         int cx= 0;
 
@@ -43,15 +46,23 @@ public class ValidTicTacToe {
                 }
             }
         }
+        // we are starting with X, so if co is more then its false
+        // also we are moving one by one ,so if the difference between x and 0 is greater than 1,
+        // then its false as well
         if(co>cx || cx-co>1){
             return false;
         }
+
+        // get the winnings of both
         boolean winX = checkValidity(board, 'X');
         boolean winO = checkValidity(board, 'O');
+
+        // if both are true(which cannot be possible as the game is stopping after one win, then return false
 
         if(winX== true && winO == true){
             return false;
         }
+        // if x is true, but counts of both are also equal which means its not valid, return false
         if(winX == true && cx== co){
             return false;
         }
@@ -60,6 +71,7 @@ public class ValidTicTacToe {
         if(winO == true && cx>co){
             return false;
         }
+        //else return true in all the cases
         return true;
 
 
